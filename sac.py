@@ -66,11 +66,11 @@ def sac(args, steps_per_epoch=1500, replay_size=int(1e6), gamma=0.99,
     torch.manual_seed(seed)
     np.random.seed(seed)
 
-    env = ML1.get_train_tasks('pick-place-v1')  # Create an environment with task `pick_place`
+    env = ML1.get_train_tasks('reach-v1')  # Create an environment with task `pick_place`
     tasks = env.sample_tasks(1)  # Sample a task (in this case, a goal variation)
     env.set_task(tasks[0])  # Set task
 
-    test_env = ML1.get_train_tasks('pick-place-v1')  # Create an environment with task `pick_place`
+    test_env = ML1.get_train_tasks('reach-v1')  # Create an environment with task `pick_place`
     tasks = env.sample_tasks(1)  # Sample a task (in this case, a goal variation)
     test_env.set_task(tasks[0])  # Set task
 
@@ -289,7 +289,7 @@ if __name__ == '__main__':
     parser.add_argument('--epochs', type=int, default=1000)
     parser.add_argument('--exp_name', type=str, default='sac')
     parser.add_argument('--logdir', type=str, default='experiments/')
-    parser.add_argument('--model-name', type=str, default='MetaWorld_v9')
+    parser.add_argument('--model-name', type=str, default='MetaWorld_Reach_v1')
     parser.add_argument('--save-model-dir', type=str, default='MetaWorld')
 
     args = parser.parse_args()
