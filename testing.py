@@ -20,8 +20,8 @@ tasks = env.sample_tasks(1)  # Sample a task (in this case, a goal variation)
 env.set_task(tasks[0])  # Set task
 
 actor_critic = core.MLPActorCritic
-hid = 256
-l = 2
+hid = 400
+l = 3
 ac_kwargs = dict(hidden_sizes=[hid] * l)
 gamma = 0.99
 seed = 0
@@ -41,7 +41,7 @@ act_limit = env.action_space.high[0]
 
 # Create actor-critic module and target networks
 ac = actor_critic(env.observation_space, env.action_space, **ac_kwargs)
-ac.load_state_dict(torch.load("MetaWorld/MetaWorld.pth"))
+ac.load_state_dict(torch.load("MetaWorld/MetaWorld_v8.pth"))
 ac.eval()
 
 steps = 0

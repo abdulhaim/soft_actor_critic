@@ -44,9 +44,9 @@ class ReplayBuffer:
         return {k: torch.as_tensor(v, dtype=torch.float32) for k, v in batch.items()}
 
 
-def sac(args, steps_per_epoch=4000, replay_size=int(1e6), gamma=0.99,
-        polyak=0.995, lr=1e-3, alpha=0.2, batch_size=128, start_steps=1000,
-        update_after=150, update_every=50, num_test_episodes=10, max_ep_len=150,
+def sac(args, steps_per_epoch=1500, replay_size=int(1e6), gamma=0.99,
+        polyak=0.995, lr=1e-3, alpha=3e-4, batch_size=128, start_steps=1000,
+        update_after=1000, update_every=1, num_test_episodes=10, max_ep_len=150,
         logger_kwargs=dict(), save_freq=1):
 
     logger_kwargs = setup_logger_kwargs(args.exp_name, args.seed)
@@ -282,14 +282,14 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--env', type=str, default='')
-    parser.add_argument('--hid', type=int, default=256)
-    parser.add_argument('--l', type=int, default=2)
+    parser.add_argument('--hid', type=int, default=400)
+    parser.add_argument('--l', type=int, default=3)
     parser.add_argument('--gamma', type=float, default=0.99)
     parser.add_argument('--seed', '-s', type=int, default=0)
-    parser.add_argument('--epochs', type=int, default=50)
+    parser.add_argument('--epochs', type=int, default=1000)
     parser.add_argument('--exp_name', type=str, default='sac')
     parser.add_argument('--logdir', type=str, default='experiments/')
-    parser.add_argument('--model-name', type=str, default='MetaWorld_v2')
+    parser.add_argument('--model-name', type=str, default='MetaWorld_v9')
     parser.add_argument('--save-model-dir', type=str, default='MetaWorld')
 
     args = parser.parse_args()
